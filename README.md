@@ -25,3 +25,23 @@ Always base string slicing indices on the results one of these searching methods
 ### Can I slice a string at 0 or at s.len()?
 
 Yes, these indices are always valid for slicing.
+
+## Patterns
+
+### The `_` pattern, no-op pattern
+
+Note that for the _ pattern means no-op as in *“don't hold this”*. It doesn't mean *”drop this*”. But the former sometimes leads to the latter.
+
+```rust
+let s = String::new();
+let _ = s; /* “don't hold this” */
+let t = s; /* “t, please hold this” => the t variable now owns the string s. */
+```
+
+```rust
+let opt = Some(String::new());
+if Some(_) = opt {
+    // Yes it's a Some(String), but we didn't consume the string -- we said "don't hold it".
+    println!("The string: {:?}", opt.as_ref().unwrap());
+}
+```
