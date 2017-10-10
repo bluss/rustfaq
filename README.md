@@ -34,8 +34,8 @@ Note that for the _ pattern means no-op as in *“don't hold this”*. It doesn'
 
 ```rust
 let s = String::new();
-let _ = s; /* “don't hold this” */
-let t = s; /* “t, please hold this” => the t variable now owns the string s. */
+let _ = s; // “don't hold this”
+let t = s; // “t, please hold this” => the t variable now owns the string s.
 ```
 
 ```rust
@@ -45,3 +45,12 @@ if Some(_) = opt {
     println!("The string: {:?}", opt.as_ref().unwrap());
 }
 ```
+
+In this example, not holding the value results in it dropping:
+
+```rust
+let _ = f(); // Don't hold the return value of f.
+             // Nobody's holding it -- so it drops.
+```
+
+`let _ = ` is a common way to disable the “value must be used” warning.
