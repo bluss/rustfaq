@@ -2,6 +2,8 @@
 # Rust Supplementary FAQ
 
 * [Strings](#strings)
+* [Patterns](#patterns)
+* [Iterators](#iterators)
 
 ## Introduction
 The supplementary Rust FAQ is intended to be extensive, answer questions that are often encountered, and being simple to update.
@@ -54,3 +56,22 @@ let _ = f(); // Don't hold the return value of f.
 ```
 
 `let _ = ` is a common way to disable the “value must be used” warning.
+
+## Iterators
+
+### How does a DoubleEndedIterator work?
+
+A double ended iterator has two ends, and you can alternate taking elements from either side. Taking from one side does not alter the other side, unless you reach the point where the ends meet.
+
+**Note:** Double ended does not mean “bi-directional”! We can only “take” from the front and from the back.
+
+Sketch about the concept of a DEI:
+
+```rust
+[a b c d ] start
+[. b c d ] .next() -> a
+[. b c . ] .next_back() -> d
+[. b . . ] .next_back() -> c
+[. . . . ] .next() -> b
+[. . . . ] .next() or .next_back() -> None
+```
