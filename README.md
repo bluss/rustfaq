@@ -4,6 +4,7 @@
 * [Strings](#strings)
 * [Patterns](#patterns)
 * [Iterators](#iterators)
+* [Lifetimes](#lifetimes)
 
 ## Introduction
 The supplementary Rust FAQ is intended to be extensive, answer questions that are often encountered, and being simple to update.
@@ -75,3 +76,16 @@ Sketch about the concept of a DEI:
 [. . . . ] .next() -> b
 [. . . . ] .next() or .next_back() -> None
 ```
+
+
+## Lifetimes
+
+### Lifetime bound on a type? What is this? `T: 'a` and `U: 'static`
+
+If we have a type parameter `T` and a lifetime bound like this: `where T: 'a`, what does it mean?
+
+The intuitive and high level explanation is: “T maybe contains references, and if it does, all of them are valid for **at least** the scope `'a`”.
+
+(If T doesn't contain references, then we are fine anyway. Having no references, we satisfy `T: 'a` for all `'a`.)
+
+Also note that if we have the type `&'a T`, then we always require `T: 'a`. How can we read this intuitively?  If we have a reference valid for the scope `'a`, then the type `T` and anything it contains, must be valid to use for at least the scope `'a` too.
