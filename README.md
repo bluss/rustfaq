@@ -96,6 +96,7 @@ This is just a special case of the previous question, but it often shows up.
 
 The intuitive explanation is that `U: 'static` means that “U does not contain references”.
 
+*Almost.* It’s “U does not contain references, except `'static` ones.” More formally, we can say that we have an indefinite lease on values of type `U` and there is no point in the program where the value goes invalid.
+
 **Note** it does not mean that values of `U` are in a static variable or must live forever! It means that we **are allowed to** keep them around forever. But we don't have to. There are no strings attached and no best-used-before-date, because `'static` is the longest lifetime there is in a Rust program.
 
-*Almost.* It's “U does not contain references, except `'static` ones.” More formally, we can say that we have an indefinite lease on values of type `U` and there is no point in the program where the value goes invalid.
