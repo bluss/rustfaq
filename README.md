@@ -89,3 +89,13 @@ The intuitive and high level explanation is: “T maybe contains references, and
 (If T doesn't contain references, then we are fine anyway. Having no references, we satisfy `T: 'a` for all `'a`.)
 
 Also note that if we have the type `&'a T`, then we always require `T: 'a`. How can we read this intuitively?  If we have a reference valid for the scope `'a`, then the type `T` and anything it contains, must be valid to use for at least the scope `'a` too.
+
+### Lifetime bound on a type? What's `U: 'static`?
+
+This is just a special case of the previous question, but it often shows up.
+
+The intuitive explanation is that `U: 'static` means that “U does not contain references”.
+
+**Note** it does not mean that values of `U` are in a static variable or must live forever! It means that we **are allowed to** keep them around forever. But we don't have to. There are no strings attached and no best-used-before-date, because `'static` is the longest lifetime there is in a Rust program.
+
+*Almost.* It's “U does not contain references, except `'static` ones.” More formally, we can say that we have an indefinite lease on values of type `U` and there is no point in the program where the value goes invalid.
