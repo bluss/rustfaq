@@ -80,7 +80,7 @@ Sketch about the concept of a DEI:
 
 ## Lifetimes
 
-### Lifetime bound on a type? What is this? `T: 'a` and `U: 'static`
+### Lifetime bound on a type? What is this? `T: 'a`
 
 If we have a type parameter `T` and a lifetime bound like this: `where T: 'a`, what does it mean?
 
