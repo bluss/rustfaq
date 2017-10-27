@@ -117,3 +117,23 @@ We can see that clearly, where a `&'b X` is expected, we can safely use any `&X`
 ### Variance
 
 Please see [Subtyping](#what-is-subtyping) before learning about variance.
+
+Variance is about how **subtype relations** change when **type constructors** are applied.
+
+If we have a type `Construct<T>` in Rust, we call `Construct` a type constructor because it takes a type (`T`) and the result is a Rust type (`Construct<T>`). (`Construct` is by itself not a type of any kind in Rust). “S a subtype of T” is also written `S <: T`.
+
+Variance tells us: If I know that `S` is a subtype of `T`, what the subtype relation between `Construct<S>` and `Construct<T>`?
+
+The important variance cases for a type constructor `Construct`, with respect to its type parameter, are: 
+
+- **Invariant**
+  - `Construct<S> <: Construct<T>` only if S is equal to T
+- **Covariant**
+  - `Construct<S> <: Construct<T>` if `S <: T`
+  - “co” for “the same”; the direction of the relation does not change
+- **Contravariant**
+  - `Construct<T> <: Construct<S>` if `S <: T`
+  - “contra” for “the opposite”; the direction of the relation is flipped
+
+
+Covariant is sometimes called just “variant”. Note that variance is with-respect-to a particular parameter of the constructor.
