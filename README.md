@@ -100,3 +100,19 @@ The intuitive explanation is that `U: 'static` means that “U does not contain 
 
 **Note** it does not mean that values of `U` are in a static variable or must live forever! It means that we **are allowed to** keep them around forever. But we don't have to. There are no strings attached and no best-used-before-date, because `'static` is the longest lifetime there is in a Rust program.
 
+
+## Type System Theory
+
+### What is Subtyping?
+
+The definition of [subtyping](https://en.wikipedia.org/wiki/Subtyping), from Wikipedia, is that if S is a subtype of T, *any term of type S can be safely used in a context where a term of type T is expected.*
+
+In Rust, subtyping only ever applies to the lifetime part of types. For example, we can use `&String` in many places where `&str` is expected, but that does **not** mean that `&String` is a subtype of `&str`.
+
+The subtyping relation we do have is that `&'a X` is a subtype of `&'b X` if `'a` is a longer or equal lifetime than `'b`, which is usally written `'a: 'b` (“'a outlives 'b”).
+
+We can see that clearly, where a `&'b X` is expected, we can safely use any `&X` with a lifetime that *outlives* `'b`.
+
+### Variance
+
+Please see [Subtyping](#what-is-subtyping) before learning about variance.
