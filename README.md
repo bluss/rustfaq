@@ -137,3 +137,7 @@ The important variance cases for a type constructor `Construct`, with respect to
 
 
 Covariant is sometimes called just “variant”. Note that variance is with-respect-to a particular parameter of the constructor.
+
+### Do you have any examples of Variance?
+
+- See the nomicon! [Subtyping and Variance](https://doc.rust-lang.org/beta/nomicon/subtyping.html)
