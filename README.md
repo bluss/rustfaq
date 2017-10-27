@@ -5,6 +5,7 @@
 * [Patterns](#patterns)
 * [Iterators](#iterators)
 * [Lifetimes](#lifetimes)
+* [Type System Theory](#type-system-theory)
 
 ## Introduction
 The supplementary Rust FAQ is intended to be extensive, answer questions that are often encountered, and being simple to update.
