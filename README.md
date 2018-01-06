@@ -44,7 +44,7 @@ let t = s; // “t, please hold this” => the t variable now owns the string s.
 
 ```rust
 let opt = Some(String::new());
-if Some(_) = opt {
+if let Some(_) = opt {
     // Yes it's a Some(String), but we didn't consume the string -- we said "don't hold it".
     println!("The string: {:?}", opt.as_ref().unwrap());
 }
